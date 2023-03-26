@@ -3,10 +3,20 @@
 
 void ADC_PeriClockControl(ADC_TypeDef *pADCx , uint8_t EnorDI)
 {
-	if(pADCx == ADC1)
-		RCC->APB2ENR |= (RCC_APB2ENR_ADC1EN);
-	else 
-		RCC->APB2ENR |= (RCC_APB2ENR_ADC1EN);
+	if(EnorDI == ENABLE)
+	{
+		if(pADCx == ADC1)
+			RCC->APB2ENR |= (RCC_APB2ENR_ADC1EN);
+		else 
+			RCC->APB2ENR |= (RCC_APB2ENR_ADC1EN);
+	}
+	else
+	{
+		if(pADCx == ADC1)
+			RCC->APB2ENR &= ~(RCC_APB2ENR_ADC1EN);
+		else 
+			RCC->APB2ENR &= ~(RCC_APB2ENR_ADC1EN);
+	}
 }
 
 void ADC_OneChannel(ADC_Handle_t *pHandleADC , uint8_t channel_name)

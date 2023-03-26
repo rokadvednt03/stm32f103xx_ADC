@@ -3,6 +3,40 @@
 #include <stdio.h>
 #include <stdint.h>
 
+
+int main(void)
+{
+	GPIO_Handle_t gpio;
+	ADC_Handle_t adc;
+	
+	gpio.pGPIOx = GPIOA;
+	gpio.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
+	gpio.GPIO_PinConfig.GPIO_ModeInOut = GPIO_IN;
+	gpio.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_ANALOGIN;
+	
+	adc.pADCx = ADC1;
+	adc.Config.Data_Align = ADC_Data_Align_RIGHT;
+	adc.Config.NoOFConvMode = 1;
+	adc.Config.RegularConvMode = ADC_RegularConvMode_SnglConv;
+	adc.Config.SamplingRate = ADC_SmplRate_55_5_Cycle;
+	
+	GPIO_PeriClockControl(GPIOA , ENABLE );
+	ADC_PeriClockControl(ADC1,ENABLE);
+	
+	GPIO_Init(&gpio);
+	ADC_OneChannel(&adc,ADC_Channel_5);
+	ADC_StartConv(ADC1);
+	
+	while(1)
+	{
+	
+	}
+	
+}
+
+
+
+/*
 int main(void)
 {
 	GPIO_Handle_t gpio;
@@ -69,3 +103,5 @@ int main(void)
 	}
 	
 }
+*/
+
