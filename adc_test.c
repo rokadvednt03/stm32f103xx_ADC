@@ -3,9 +3,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-
 int main(void)
 {
+	
+	uint16_t data[2] = {0,0};
+	uint16_t n , m ;
 	GPIO_Handle_t gpio;
 	ADC_Handle_t adc;
 	
@@ -16,24 +18,33 @@ int main(void)
 	
 	adc.pADCx = ADC1;
 	adc.Config.Data_Align = ADC_Data_Align_RIGHT;
-	adc.Config.NoOFConvMode = 1;
+	adc.Config.NoOFConvMode = 2;
 	adc.Config.RegularConvMode = ADC_RegularConvMode_SnglConv;
 	adc.Config.SamplingRate = ADC_SmplRate_55_5_Cycle;
 	
 	GPIO_PeriClockControl(GPIOA , ENABLE );
 	ADC_PeriClockControl(ADC1,ENABLE);
+
 	
 	GPIO_Init(&gpio);
-	ADC_OneChannel(&adc,ADC_Channel_5);
+	gpio.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_6;
+	GPIO_Init(&gpio);
+//	ADC_OneChannel(&adc,ADC_Channel_5);
+	ADC_Init(&adc);
+	ADC_ChConf(&adc,ADC_Channel_5,ADC_Ch_sqn_1);
+	ADC_ChConf(&adc,ADC_Channel_6,ADC_Ch_sqn_2);
+	
 	ADC_StartConv(ADC1);
+	
+	
 	
 	while(1)
 	{
-	
+		n = data[0];
+		m = data[1];
 	}
 	
 }
-
 
 
 /*

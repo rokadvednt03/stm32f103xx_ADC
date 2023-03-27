@@ -40,6 +40,26 @@
 #define ADC_SmplRate_71_5_Cycle 6
 #define ADC_SmplRate_239_5_Cycle 7
 
+#define ADC_Ch_sqn_1 0
+#define ADC_Ch_sqn_2 1
+#define ADC_Ch_sqn_3 2
+#define ADC_Ch_sqn_4 3
+#define ADC_Ch_sqn_5 4
+#define ADC_Ch_sqn_6 5
+#define ADC_Ch_sqn_7 6
+#define ADC_Ch_sqn_8 7
+#define ADC_Ch_sqn_9 8
+#define ADC_Ch_sqn_10 9
+#define ADC_Ch_sqn_11 10
+#define ADC_Ch_sqn_12 11
+#define ADC_Ch_sqn_13 12
+#define ADC_Ch_sqn_14 13
+#define ADC_Ch_sqn_15 14
+#define ADC_Ch_sqn_16 15
+#define ADC_Ch_sqn_17 16
+#define ADC_Ch_sqn_18 17
+
+
 typedef struct
 {
 	uint32_t Data_Align ;
@@ -66,3 +86,5 @@ void ADC_Init(ADC_Handle_t *pHandleADC);
 void ADC_PeriClockControl(ADC_TypeDef *pADCx , uint8_t EnorDI);
 void ADC_OneChannel(ADC_Handle_t *pHandleADC , uint8_t channel_name);
 void ADC_StartConv(ADC_TypeDef *pADCx);
+void ADC_Data_Align(ADC_Handle_t *pHandleADC);
+void ADC_ChConf(ADC_Handle_t *pHandleADC , uint8_t channel_name,uint8_t channel_sequence);
